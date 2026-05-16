@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>欢迎来到我的个人主页</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+
     <style>
         /* 基础样式重置 */
         * {
@@ -55,20 +58,20 @@
             margin: 40px auto;
             padding: 0 20px;
             display: flex;
-            gap: 30px; /* 左右两栏的间距 */
+            gap: 30px;
             align-items: flex-start;
         }
 
         /* 左侧栏：个人名片区域 */
         .left-column {
-            flex: 0 0 280px; /* 固定宽度 280px */
+            flex: 0 0 280px;
             background: #ffffff;
             padding: 30px 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
             text-align: center;
             position: sticky;
-            top: 90px; /* 随页面平滑跟随移动 */
+            top: 90px;
         }
         .profile-avatar {
             width: 150px;
@@ -84,14 +87,8 @@
         }
         .left-column h1 {
             font-size: 1.8rem;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
             color: #111;
-        }
-        .tagline {
-            color: #0066cc;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 20px;
         }
         .personal-info-list {
             text-align: left;
@@ -99,14 +96,46 @@
             padding-top: 15px;
             font-size: 0.9rem;
             color: #555;
+            margin-bottom: 20px;
         }
         .personal-info-list p {
             margin-bottom: 8px;
         }
 
+        /* 新增：技能树/标签云样式 */
+        .skills-wrapper {
+            text-align: left;
+            border-top: 1px solid #f0f2f5;
+            padding-top: 15px;
+        }
+        .skills-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 10px;
+        }
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .skill-tag {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        /* 不同工具调配专属视觉色彩 */
+        .tag-spice { background-color: #e3f2fd; color: #0d47a1; }
+        .tag-plecs { background-color: #e8f5e9; color: #1b5e20; }
+        .tag-py    { background-color: #fff3e0; color: #e65100; }
+        .tag-mat   { background-color: #fffde7; color: #f57f17; }
+        .tag-origin{ background-color: #f3e5f5; color: #4a148c; }
+        .tag-LaTeX   { background-color: #efebe9; color: #4e342e; }
+
         /* 右侧栏：详细内容区域 */
         .right-column {
-            flex: 1; /* 自动撑满剩余宽度 */
+            flex: 1;
         }
 
         /* 欢迎语卡片 */
@@ -263,10 +292,37 @@
             color: #888;
         }
 
-        /* 摄影作品集网格样式 */
+        /* 摄影作品集板块 */
         .photography-section-wrapper {
             margin-bottom: 35px;
         }
+        
+        /* 新增：分类导航标签样式 */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background-color: #fff;
+            border: 1px solid #e1e8ed;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #0066cc;
+            color: #fff;
+            border-color: #0066cc;
+            box-shadow: 0 2px 6px rgba(0,102,204,0.2);
+        }
+
+        /* 摄影网格与卡片 */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -277,11 +333,20 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+        }
+        /* 配合分类过滤的淡出/隐藏效果 */
+        .photo-card.hidden {
+            display: none;
         }
         .photo-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+        }
+        /* 灯箱效果触发区域 */
+        .photo-link {
+            display: block;
+            cursor: zoom-in; /* 鼠标悬停显示放大镜 */
         }
         .photo-card img {
             width: 100%;
@@ -330,7 +395,7 @@
                 <a href="#about">关于我</a>
                 <a href="#projects">项目经历</a>
                 <a href="#honors">荣誉奖项</a>
-                <a href="#photography">摄影作品</a>
+                <a href="#photography" style="display: none;">摄影作品</a>
                 <a href="#contact">联系方式</a>
             </nav>
         </div>
@@ -345,17 +410,43 @@
             <h1>高鸽格</h1>
             
             <div class="personal-info-list">
-                <p>📍 <strong>出生地：</strong>湖北宜昌</p>
-                <p>🇨🇳 <strong>政治面貌：</strong>中共党员</p>
-                <p>📧 <strong>Email：</strong>0712525@sjtu.edu.cn</p>
-                <p>🐙 <strong>GitHub：</strong>gushan712</p>
+                <p><strong>出生地：</strong>湖北宜昌</p>
+                <p><strong>政治面貌：</strong>中共党员</p>
+                <p><strong>Email：</strong>0712525@sjtu.edu.cn</p>
+                <p><strong>联系电话：</strong>(+86) 18827470860</p>
+                <p><strong>GitHub：</strong>gushan712</p>
             </div>
+
+            <div class="skills-wrapper">
+                <div class="skills-title">🛠️ 专业工具栈</div>
+                <div class="skills-tags">
+                    <span class="skill-tag tag-spice">LTspice</span>
+                    <span class="skill-tag tag-plecs">PLECS</span>
+                    <span class="skill-tag tag-py">Python</span>
+                    <span class="skill-tag tag-mat">MATLAB</span>
+                    <span class="skill-tag" style="background-color: #e6f7ff; color: #0050b3; border: 1px solid #91d5ff;">Simulink</span>
+                    <span class="skill-tag tag-origin">Origin</span>
+                    <span class="skill-tag tag-LaTeX">LaTeX</span>
+                    <span class="skill-tag" style="background-color: #fff3e0; color: #d46b08; border: 1px solid #ffd591;">Office</span>
+                </div>
+            </div>
+
+            <div style="text-align: left; border-top: 1px solid #f0f2f5; padding-top: 15px; margin-top: 15px;">
+                <div style="font-size: 0.9rem; font-weight: bold; color: #444; margin-bottom: 10px;">🗣️ 语言证书</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <span style="font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: 600; background-color: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f;">CET-4 (568)</span>
+                    <span style="font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: 600; background-color: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f;">CET-6 (564)</span>
+                    <span style="font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: 600; background-color: #f4f5f7; color: #555; border: 1px solid #d9d9d9;">普通话二乙</span>
+                </div>
+            </div>
+
         </aside>
 
         <main class="right-column">
             
-            <div class="welcome-card">
-                Welcome to my space! 这是我的第一个全网可访问的个人网站。欢迎在这里了解我的研究方向与生活记录。
+            <div class="welcome-card" style="border-left: 4px solid #0066cc;">
+                Welcome to my space! <br>
+                这是我的第一个个人网站。欢迎在这里了解我的研究与生活。
             </div>
 
             <section class="education-section-wrapper">
@@ -372,8 +463,44 @@
                         <div class="timeline-date">2023.09 - 2027.06</div>
                         <div class="timeline-content">
                             <h3>上海交通大学（本科）</h3>
-                            <p>就读于电气工程及其自动化专业。在校期间系统学习了电力系统分析、暂态分析与自动控制理论，具备了扎实的工程基础。</p>
+                            <p style="margin-bottom: 12px;">就读于电气工程及其自动化专业。在校期间系统学习了电力系统分析、暂态分析与自动控制理论，具备了扎实的工程基础。</p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                                <span style="background-color: #e6f7ff; color: #0050b3; border: 1px solid #91d5ff; padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">📊 核心学积分：88.98</span>
+                                <span style="background-color: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f; padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">📈 排名：17 / 116 (Top 15%)</span>
+                                <span style="background-color: #fff7e6; color: #d46b08; border: 1px solid #ffd591; padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">✨ 30 门课程达 A 或 A+</span>
+                            </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="margin-bottom: 35px;">
+                <h2 class="section-title">📚 核心主修课程</h2>
+                <div style="background: #ffffff; padding: 22px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 15px;">
+                        <div style="background: #f8fafc; padding: 10px 15px; border-radius: 6px; border-left: 3px solid #10b981; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.9rem; color: #334155; font-weight: 500;">模拟电子技术</span>
+                            <span style="font-weight: 700; color: #10b981; font-size: 1.05rem;">100</span>
+                        </div>
+                        <div style="background: #f8fafc; padding: 10px 15px; border-radius: 6px; border-left: 3px solid #0284c7; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.9rem; color: #334155; font-weight: 500;">自动控制原理</span>
+                            <span style="font-weight: 700; color: #0284c7; font-size: 1.05rem;">99</span>
+                        </div>
+                        <div style="background: #f8fafc; padding: 10px 15px; border-radius: 6px; border-left: 3px solid #f59e0b; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.9rem; color: #334155; font-weight: 500;">电机学</span>
+                            <span style="font-weight: 700; color: #f59e0b; font-size: 1.05rem;">98</span>
+                        </div>
+                        <div style="background: #f8fafc; padding: 10px 15px; border-radius: 6px; border-left: 3px solid #6366f1; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.9rem; color: #334155; font-weight: 500;">高电压技术</span>
+                            <span style="font-weight: 700; color: #6366f1; font-size: 1.05rem;">97</span>
+                        </div>
+                        <div style="background: #f8fafc; padding: 10px 15px; border-radius: 6px; border-left: 3px solid #8b5cf6; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.9rem; color: #334155; font-weight: 500;">数字信号处理</span>
+                            <span style="font-weight: 700; color: #8b5cf6; font-size: 1.05rem;">96</span>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid #f1f5f9; padding-top: 12px; font-size: 0.85rem; color: #64748b; line-height: 1.5;">
+                        <strong>💡 其他主修课程：</strong>电路理论、电磁场、电气工程基础、电力电子技术、电力系统暂态分析、继电保护等。
                     </div>
                 </div>
             </section>
@@ -418,38 +545,161 @@
                 </details>
             </section>
 
+            <section style="margin-bottom: 35px;">
+                <h2 class="section-title">🏆 竞赛经历</h2>
+                <div style="background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #f0f2f5;">
+                            <div style="font-weight: 600; color: #2c3e50;">全国大学生物理实验竞赛</div>
+                            <div style="display: flex; gap: 20px; align-items: center;">
+                                <span style="background-color: #fff7e6; color: #d46b08; border: 1px solid #ffd591; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">国家一等奖</span>
+                                <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 65px; text-align: right;">2023.12</span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #f0f2f5;">
+                            <div style="font-weight: 600; color: #2c3e50;">全国大学生数学竞赛</div>
+                            <div style="display: flex; gap: 20px; align-items: center;">
+                                <span style="background-color: #f5f5f5; color: #595959; border: 1px solid #d9d9d9; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem;">上海市三等奖</span>
+                                <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 65px; text-align: right;">2023.12</span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #f0f2f5;">
+                            <div style="font-weight: 600; color: #2c3e50;">高校电气电子工程创新大赛</div>
+                            <div style="display: flex; gap: 20px; align-items: center;">
+                                <span style="background-color: #f5f5f5; color: #595959; border: 1px solid #d9d9d9; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem;">上海市三等奖</span>
+                                <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 65px; text-align: right;">2024.07</span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0;">
+                            <div style="font-weight: 600; color: #2c3e50;">全国大学生数学建模竞赛</div>
+                            <div style="display: flex; gap: 20px; align-items: center;">
+                                <span style="background-color: #f5f5f5; color: #595959; border: 1px solid #d9d9d9; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem;">上海市三等奖</span>
+                                <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 65px; text-align: right;">2024.09</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
             <section class="honor-section-wrapper" id="honors">
-                <h2 class="section-title">🏆 荣誉奖项</h2>
+                <h2 class="section-title">🎖️ 荣誉奖项</h2>
                 <div class="honor-card">
                     <ul class="honor-list">
                         <li class="honor-item">
-                            <div class="honor-icon">🏆</div>
+                            <div class="honor-icon">⚡</div>
                             <div class="honor-info">
-                                <h4>国家奖学金 / 优秀学生奖学金</h4>
-                                <p>获得时间：2025年 · 颁发单位：上海交通大学</p>
+                                <h4>特高压电网奖学金</h4>
+                                <p>针对电气行业高素质骨干人才设立的专项奖学金</p>
                             </div>
                         </li>
                         <li class="honor-item">
-                            <div class="honor-icon">🏅</div>
+                            <div class="honor-icon">📜</div>
                             <div class="honor-info">
-                                <h4>全国大学生数学建模竞赛 / 电工杯 奖项</h4>
-                                <p>获得时间：2024年 · 核心负责数据处理与算法实现</p>
+                                <h4>校级 B 等奖学金</h4>
+                                <p>学业与综合表现优秀 颁发单位：上海交通大学 </p>
                             </div>
                         </li>
                         <li class="honor-item">
-                            <div class="honor-icon">✨</div>
+                            <div class="honor-icon">🏛️</div>
                             <div class="honor-info">
-                                <h4>学业优秀奖学金 / 三好学生</h4>
-                                <p>综合学业成绩排名保持在专业前列 (Top 15%)</p>
+                                <h4>校级三好学生 / 校级优秀团员</h4>
+                                <p>交大优秀个人荣誉，政治面貌与群众基础极佳</p>
                             </div>
                         </li>
                     </ul>
                 </div>
             </section>
-
-            <section class="photography-section-wrapper" id="photography">
+            
+            /* 隐藏摄影作品集板块，后续完善后再展示 */
+            <section class="photography-section-wrapper" id="photography" style="display: none;">
                 <h2 class="section-title">📸 摄影作品集</h2>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterPhotos('all')">全部</button>
+                    <button class="filter-btn" onclick="filterPhotos('scenery')">风光</button>
+                    <button class="filter-btn" onclick="filterPhotos('street')">街头</button>
+                    <button class="filter-btn" onclick="filterPhotos('campus')">校园</button>
+                </div>
+
                 <div class="photo-grid" id="photoGallery"></div>
+            </section>
+            
+            <section style="margin-bottom: 35px;">
+                <h2 class="section-title">🌍 研学与校园经历</h2>
+                
+                <details class="project-details">
+                    <summary>🇬🇧 英国牛津大学展望计划 · STEM Module (国外研学)</summary>
+                    <div class="project-content">
+                        <p><strong>项目简介：</strong>入选学校“菁莪计划”，于2025年暑期前往英国牛津大学参与 STEM Module 研学项目。</p>
+                        <ul>
+                            <li>在前沿科学与工程领域拓展国际化视野，参与学术讲座与团队协同课题。</li>
+                            <li>沉浸式体验世界顶级学府的跨学科研究氛围。</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="project-details">
+                    <summary>📈 北京大学暑期学校 · Stata 数据分析与实证研究</summary>
+                    <div class="project-content">
+                        <p><strong>项目简介：</strong>2025年暑期选修北京大学数据分析课程，开展基于大样本微观调查数据的计量经济学实证分析。</p>
+                        <ul>
+                            <li>基于 CFPS（中国家庭追踪调查）2022年微观数据，独立构建结构方程与回归模型。</li>
+                            <li>深入探究互联网使用对中老年人心理健康的影响机制，处理混杂因素并进行异质性检验。</li>
+                            <li>独立撰写并完成长达 12 页的完整实证分析学术报告，熟练掌握 Stata 数据清洗与实证建模技能。</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="project-details">
+                    <summary>👥 班长与集体建设 (学生工作)</summary>
+                    <div class="project-content">
+                        <p><strong>经历简介：</strong>2023-2024 学年担任班级班长，全面负责班级日常事务、学风建设与核心集体活动组织。</p>
+                        <ul>
+                            <li>高效统筹、组织并带领班委成功策划 3 次大型主题团建活动，显著提升班级凝聚力。
+                            <li>班级最终在评选中脱颖而出，荣获校级“团日活动优秀奖”。</li>
+                        </ul>
+                    </div>
+                </details>
+            </section>
+            
+            <section style="margin-bottom: 35px;">
+                <h2 class="section-title">🤝 社会实践与志愿服务</h2>
+                <div style="background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        
+                        <div style="border-bottom: 1px dashed #f0f2f5; padding-bottom: 12px;">
+                            <h4 style="font-size: 1rem; color: #333; margin-bottom: 5px;">🔥 寒假“筑梦”返校宣讲 · 连续两年优秀实践团</h4>
+                            <p style="font-size: 0.9rem; color: #666;">连续两年代表学校返回家乡高中开展宣讲，负责宣讲策划、宣讲材料编排及现场互动，均获评校级“优秀实践团”。</p>
+                        </div>
+
+                        <div style="border-bottom: 1px dashed #f0f2f5; padding-bottom: 12px;">
+                            <h4 style="font-size: 1rem; color: #333; margin-bottom: 5px;">🚢 舟山摘箬山岛科技实践 & 雪龙号参观</h4>
+                            <p style="font-size: 0.9rem; color: #666;">参与为期 5 天的舟山摘箬山岛海洋科技实践教育活动；深入“雪龙号/雪龙二号”极地考察船进行参观实践，体悟国之重器与大科学工程。</p>
+                        </div>
+
+                        <div>
+                            <h4 style="font-size: 1rem; color: #333; margin-bottom: 5px;">🏃 上海半程马拉松 & 电影博物馆志愿服务</h4>
+                            <p style="font-size: 0.9rem; color: #666;">作为核心志愿者投身上海半程马拉松、上海电影博物馆等重大赛事与展馆的组织与日常服务保障工作，累计志愿服务时长达 <strong>75 小时</strong>。</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section style="margin-bottom: 35px;">
+                <h2 class="section-title">💡 综合评价</h2>
+                <div style="background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); line-height: 1.8; color: #444; font-size: 0.95rem;">
+                    <ul style="padding-left: 20px;">
+                        <li style="margin-bottom: 8px;"><strong>专业硬核：</strong>思维敏捷，扎实并熟练掌握电气工程基础、暂态分析等核心学科的相关理论知识与实验技能。</li>
+                        <li style="margin-bottom: 8px;"><strong>综合素质：</strong>丰富的班长学生工作、国际研学及大额志愿服务经历，培养了极佳的沟通协调能力、组织统筹能力与团队协作精神。</li>
+                        <li><strong>沉着冷静：</strong>性格随和细腻，面对复杂的工程仿真或高压测试能保持沉着冷静。接受新鲜事物、新技术栈快，独立性与自驱力强。</li>
+                    </ul>
+                </div>
             </section>
 
             <section id="contact">
@@ -466,26 +716,65 @@
         <p>© 2026 gushan712. Powered by GitHub Pages.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
     <script>
-        // =================【在这里修改照片配置】=================
-        const totalPhotos = 6;         // 填入你想展示的照片总张数
-        const fileExtension = 'jpg';   // 你的照片后缀名（全小写，如 jpg 或 png）
-        // =======================================================
+        // =================【📸 核心数据配置中心】=================
+        // 在这里配置你的照片信息，category 必须和按钮的分类对应（scenery / street / campus）
+        // const myPhotos = [
+        //     { id: 1, title: '校园黄昏', category: 'campus' },
+        //     { id: 2, title: '街角掠影', category: 'street' },
+        //     { id: 3, title: '远山风光', category: 'scenery' },
+        //     { id: 4, title: '仰望主楼', category: 'campus' },
+        //     { id: 5, title: '胶片记忆', category: 'street' },
+        //     { id: 6, title: '日落晚霞', category: 'scenery' }
+        // ];
+        //先隐藏，后续完善后再展示
+        const myPhotos = [];
+        const fileExtension = 'jpg'; // 你的照片后缀名
+        // ========================================================
 
         const gallery = document.getElementById('photoGallery');
 
-        for (let i = 1; i <= totalPhotos; i++) {
+        // 初始化：动态渲染并生成包含灯箱外链的 HTML 节点
+        myPhotos.forEach(photo => {
             const card = document.createElement('div');
-            card.className = 'photo-card';
-            const imgSrc = `photos/${i}.${fileExtension}`;
+            // 给卡片赋予属性标签，方便后面按分类筛选
+            card.className = `photo-card ${photo.category}`;
+            const imgSrc = `photos/${photo.id}.${fileExtension}`;
 
             card.innerHTML = `
-                <img src="${imgSrc}" alt="作品 ${i}" loading="lazy">
+                <a href="${imgSrc}" class="photo-link" data-fancybox="gallery" data-caption="${photo.title}">
+                    <img src="${imgSrc}" alt="${photo.title}" loading="lazy">
+                </a>
                 <div class="photo-info">
-                    <h3>作品 ${i}</h3>
+                    <h3>${photo.title}</h3>
                 </div>
             `;
             gallery.appendChild(card);
+        });
+
+        // 启动 Fancybox 灯箱插件（点击照片自动居中放大、支持手势缩放与流畅左右滑动切换）
+        Fancybox.bind("[data-fancybox]", {
+            // 这里可以添加自定义灯箱配置（默认配置已非常完美）
+        });
+
+        // 功能2：分类过滤控制逻辑
+        function filterPhotos(category) {
+            // 1. 切换按钮的 active 激活高亮样式
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // 2. 筛选并控制卡片的显示与隐藏
+            const cards = document.querySelectorAll('.photo-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
         }
     </script>
 
