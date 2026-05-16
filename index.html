@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎来到我的个人主页</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f9fa;
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0066cc;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #0066cc;
+        }
+
+        /* 主体内容双栏布局 */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px; /* 左右两栏的间距 */
+            align-items: flex-start;
+        }
+
+        /* 左侧栏：个人名片区域 */
+        .left-column {
+            flex: 0 0 280px; /* 固定宽度 280px */
+            background: #ffffff;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            text-align: center;
+            position: sticky;
+            top: 90px; /* 随页面平滑跟随移动 */
+        }
+        .profile-avatar {
+            width: 150px;
+            height: auto;
+            margin: 0 auto 20px;
+        }
+        .profile-avatar img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .left-column h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #111;
+        }
+        .tagline {
+            color: #0066cc;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .personal-info-list {
+            text-align: left;
+            border-top: 1px solid #f0f2f5;
+            padding-top: 15px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .personal-info-list p {
+            margin-bottom: 8px;
+        }
+
+        /* 右侧栏：详细内容区域 */
+        .right-column {
+            flex: 1; /* 自动撑满剩余宽度 */
+        }
+
+        /* 欢迎语卡片 */
+        .welcome-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            color: #444;
+            border-left: 4px solid #0066cc;
+        }
+
+        /* 板块通用标题 */
+        h2.section-title {
+            margin: 0 0 20px 0;
+            font-size: 1.4rem;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 优雅的垂直时间线样式 */
+        .timeline {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 35px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #0066cc;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 3px solid #0066cc;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #0066cc;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        .timeline-content {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid #f0f2f5;
+        }
+        .timeline-content h3 {
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        /* 可折叠的项目卡片样式 */
+        .project-section-wrapper {
+            margin-bottom: 35px;
+        }
+        .project-details {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .project-details:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+        }
+        .project-details summary {
+            padding: 18px 20px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            user-select: none;
+            color: #111;
+        }
+        .project-details summary::-webkit-details-marker {
+            color: #0066cc;
+        }
+        .project-content {
+            padding: 0 20px 20px 35px;
+            border-top: 1px dashed #e1e8ed;
+            padding-top: 15px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        .project-content ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .project-content li {
+            margin-bottom: 5px;
+        }
+
+        /* 荣誉奖项样式 */
+        .honor-section-wrapper {
+            margin-bottom: 35px;
+        }
+        .honor-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .honor-list {
+            list-style: none;
+        }
+        .honor-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        .honor-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .honor-icon {
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 2px;
+        }
+        .honor-info h4 {
+            font-size: 1.05rem;
+            color: #111;
+        }
+        .honor-info p {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* 摄影作品集网格样式 */
+        .photography-section-wrapper {
+            margin-bottom: 35px;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+        }
+        .photo-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+        }
+        .photo-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        .photo-info {
+            padding: 12px;
+        }
+        .photo-info h3 {
+            font-size: 0.95rem;
+            color: #111;
+        }
+
+        /* 移动端响应式适配 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .left-column {
+                flex: 1 1 auto;
+                width: 100%;
+                position: static;
+            }
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 0.9rem;
+            margin-top: 60px;
+            border-top: 1px solid #e1e8ed;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">高鸽格的个人主页</div>
+            <nav class="nav-links">
+                <a href="#about">关于我</a>
+                <a href="#projects">项目经历</a>
+                <a href="#honors">荣誉奖项</a>
+                <a href="#photography">摄影作品</a>
+                <a href="#contact">联系方式</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" id="about">
+        
+        <aside class="left-column">
+            <div class="profile-avatar">
+                <img src="高鸽格.jpg" alt="高鸽格">
+            </div>
+            <h1>高鸽格</h1>
+            
+            <div class="personal-info-list">
+                <p>📍 <strong>出生地：</strong>湖北宜昌</p>
+                <p>🇨🇳 <strong>政治面貌：</strong>中共党员</p>
+                <p>📧 <strong>Email：</strong>0712525@sjtu.edu.cn</p>
+                <p>🐙 <strong>GitHub：</strong>gushan712</p>
+            </div>
+        </aside>
+
+        <main class="right-column">
+            
+            <div class="welcome-card">
+                Welcome to my space! 这是我的第一个全网可访问的个人网站。欢迎在这里了解我的研究方向与生活记录。
+            </div>
+
+            <section class="education-section-wrapper">
+                <h2 class="section-title">🎓 教育背景</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2027.09 - 至今 (预估)</div>
+                        <div class="timeline-content">
+                            <h3>上海交通大学（硕士研究生）</h3>
+                            <p>探索电力系统、深度学习在电气工程中的应用等更深层次的研究方向。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023.09 - 2027.06</div>
+                        <div class="timeline-content">
+                            <h3>上海交通大学（本科）</h3>
+                            <p>就读于电气工程及其自动化专业。在校期间系统学习了电力系统分析、暂态分析与自动控制理论，具备了扎实的工程基础。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-section-wrapper" id="projects">
+                <h2 class="section-title">🚀 项目经历</h2>
+                
+                <details class="project-details">
+                    <summary>📁 宽禁带半导体 GaN 功率器件双脉冲测试研究</summary>
+                    <div class="project-content">
+                        <p><strong>项目简介：</strong>参与大创/PRP研究项目，针对 EPC2366 等氮化镓（GaN）高频功率器件进行建模与分析。</p>
+                        <ul>
+                            <li>利用 LTspice 软件搭建双脉冲测试（Double Pulse Test）电路模型。</li>
+                            <li>分析开通/关断瞬态过程中的寄生参数对电压尖峰和开关损耗的影响。</li>
+                            <li>深入探究宽禁带器件在高速开关状态下的暂态稳定性。</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="project-details">
+                    <summary>📁 基于机器学习的河南某风电场功率预测系统</summary>
+                    <div class="project-content">
+                        <p><strong>项目简介：</strong>针对复杂气象条件下的风力发电输出功率进行建模预测，提高电网接纳新能源的能力。</p>
+                        <ul>
+                            <li>使用 Python 对风场历史数据进行清洗，利用 K-means 进行异常数据聚类剔除。</li>
+                            <li>构建并训练 CNN-XGBoost 混合预测模型，实现短期与超短期风电功率预测。</li>
+                            <li>优化预测精度，为功率波动剧烈情况下的电网调度与暂态稳定分析提供数据支撑。</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="project-details">
+                    <summary>📁 电力系统暂态分析与故障数值模拟</summary>
+                    <div class="project-content">
+                        <p><strong>项目简介：</strong>基于理论课程与实验扩展，对同步发电机突发短路及系统暂态稳定进行仿真验证。</p>
+                        <ul>
+                            <li>使用 PLECS/LTspice 建立同步机及多机系统的数学与拓扑模型。</li>
+                            <li>模拟对称与不对称短路故障，应用对称分量法解算各相暂态电流。</li>
+                            <li>运用 Excel/Origin 提取仿真曲线数据，计算关键暂态参数与标准差，撰写完整学术报告。</li>
+                        </ul>
+                    </div>
+                </details>
+            </section>
+
+            <section class="honor-section-wrapper" id="honors">
+                <h2 class="section-title">🏆 荣誉奖项</h2>
+                <div class="honor-card">
+                    <ul class="honor-list">
+                        <li class="honor-item">
+                            <div class="honor-icon">🏆</div>
+                            <div class="honor-info">
+                                <h4>国家奖学金 / 优秀学生奖学金</h4>
+                                <p>获得时间：2025年 · 颁发单位：上海交通大学</p>
+                            </div>
+                        </li>
+                        <li class="honor-item">
+                            <div class="honor-icon">🏅</div>
+                            <div class="honor-info">
+                                <h4>全国大学生数学建模竞赛 / 电工杯 奖项</h4>
+                                <p>获得时间：2024年 · 核心负责数据处理与算法实现</p>
+                            </div>
+                        </li>
+                        <li class="honor-item">
+                            <div class="honor-icon">✨</div>
+                            <div class="honor-info">
+                                <h4>学业优秀奖学金 / 三好学生</h4>
+                                <p>综合学业成绩排名保持在专业前列 (Top 15%)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="photography-section-wrapper" id="photography">
+                <h2 class="section-title">📸 摄影作品集</h2>
+                <div class="photo-grid" id="photoGallery"></div>
+            </section>
+
+            <section id="contact">
+                <h2 class="section-title">📬 联系我</h2>
+                <div style="background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <p>如果您对我的研究或摄影作品感兴趣，欢迎通过邮箱或 GitHub 与我取得联系！</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2026 gushan712. Powered by GitHub Pages.</p>
+    </footer>
+
+    <script>
+        // =================【在这里修改照片配置】=================
+        const totalPhotos = 6;         // 填入你想展示的照片总张数
+        const fileExtension = 'jpg';   // 你的照片后缀名（全小写，如 jpg 或 png）
+        // =======================================================
+
+        const gallery = document.getElementById('photoGallery');
+
+        for (let i = 1; i <= totalPhotos; i++) {
+            const card = document.createElement('div');
+            card.className = 'photo-card';
+            const imgSrc = `photos/${i}.${fileExtension}`;
+
+            card.innerHTML = `
+                <img src="${imgSrc}" alt="作品 ${i}" loading="lazy">
+                <div class="photo-info">
+                    <h3>作品 ${i}</h3>
+                </div>
+            `;
+            gallery.appendChild(card);
+        }
+    </script>
+
+</body>
+</html>
