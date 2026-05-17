@@ -9,10 +9,14 @@
 
     <style>
         /* 基础样式重置 */
+        /* 修改后：开启全局丝滑平滑滚动 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -48,8 +52,15 @@
             margin-left: 20px;
             transition: color 0.3s;
         }
+        /* 修改后：完美支持鼠标悬停 + 滚动高亮 */
         .nav-links a:hover {
             color: #0066cc;
+        }
+
+        /* 当页面滚动到对应板块时，给导航链接强行染上交大蓝并加粗 */
+        .nav-links a.active {
+            color: #0066cc !important;
+            font-weight: bold;
         }
 
         /* 主体内容双栏布局 */
@@ -412,8 +423,6 @@
             <div class="personal-info-list">
                 <p><strong>出生地：</strong>湖北宜昌</p>
                 <p><strong>政治面貌：</strong>中共党员</p>
-                <p><strong>Email：</strong>0712525@sjtu.edu.cn</p>
-                <p><strong>联系电话：</strong>(+86) 18827470860</p>
             </div>
 
             <div class="skills-wrapper">
@@ -720,11 +729,39 @@
                 </div>
             </section>
 
+            <section id="contact" style="margin-bottom: 35px;">
+                <h2 class="section-title">📬 联系方式</h2>
+                <div style="background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 20px; line-height: 1.6;">
+                        如果您对我的研究感兴趣，或有相关学术交流与合作意向，欢迎随时通过以下方式与我取得联系。
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+                        
+                        <div style="background: #f8fafc; padding: 12px 16px; border-radius: 6px; border-left: 3px solid #0066cc; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 1.2rem;">📧</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: #999; font-weight: bold; text-transform: uppercase;">Email Address</div>
+                                <a href="mailto:0712525@sjtu.edu.cn" style="font-size: 0.95rem; color: #0066cc; font-weight: 600; text-decoration: none;">0712525@sjtu.edu.cn</a>
+                            </div>
+                        </div>
+
+                        <div style="background: #f8fafc; padding: 12px 16px; border-radius: 6px; border-left: 3px solid #10b981; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 1.2rem;">📞</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: #999; font-weight: bold; text-transform: uppercase;">Phone Number</div>
+                                <div style="font-size: 0.95rem; color: #333; font-weight: 600;">(+86) 18827470860</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
     <footer>
-        <p>© 2026 gushan712. Powered by GitHub Pages.</p>
+        <p>流水不争先，争的是滔滔不绝。</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
@@ -732,21 +769,18 @@
     <script>
         // =================【📸 核心数据配置中心】=================
         // 在这里配置你的照片信息，category 必须和按钮的分类对应（scenery / street / campus）
-        // const myPhotos = [
-        //     { id: 1, title: '校园黄昏', category: 'campus' },
-        //     { id: 2, title: '街角掠影', category: 'street' },
-        //     { id: 3, title: '远山风光', category: 'scenery' },
-        //     { id: 4, title: '仰望主楼', category: 'campus' },
-        //     { id: 5, title: '胶片记忆', category: 'street' },
-        //     { id: 6, title: '日落晚霞', category: 'scenery' }
-        // ];
-        //先隐藏，后续完善后再展示
-        const myPhotos = [];
+        const myPhotos = [
+            { id: 1, title: '校园黄昏', category: 'campus' },
+            { id: 2, title: '街角掠影', category: 'street' },
+            { id: 3, title: '远山风光', category: 'scenery' },
+            { id: 4, title: '仰望主楼', category: 'campus' },
+            { id: 5, title: '胶片记忆', category: 'street' },
+            { id: 6, title: '日落晚霞', category: 'scenery' }
+        ];
         const fileExtension = 'jpg'; // 你的照片后缀名
         // ========================================================
 
         const gallery = document.getElementById('photoGallery');
-
         // 初始化：动态渲染并生成包含灯箱外链的 HTML 节点
         myPhotos.forEach(photo => {
             const card = document.createElement('div');
@@ -787,6 +821,37 @@
                 }
             });
         }
+
+        // ✨ 精细校准版的智能导航高亮联动脚本
+        const sections = document.querySelectorAll("div.container, section[id]");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            
+            // 获取当前浏览器滚动条顶部的距离（兼容不同浏览器内核）
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                // 校准敏感度：只要该板块露出了顶部 200 像素，就立刻判定进入
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((a) => {
+                a.classList.remove("active");
+                // 获取 href 里的锚点名字（比如 #projects 变成 projects）
+                const href = a.getAttribute("href").substring(1);
+                
+                if (href === current) {
+                    a.classList.add("active");
+                }
+            });
+        });
     </script>
 
 </body>
