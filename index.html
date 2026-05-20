@@ -508,80 +508,165 @@
                 </div>
             </section>
 
-            <section class="project-section-wrapper" id="projects">
+            <section id="projects" style="margin-bottom: 35px;">
                 <h2 class="section-title">🚀 项目经历</h2>
                 
                 <details class="project-details">
-                    <summary>📁 宽禁带半导体 GaN 功率器件双脉冲测试研究</summary>
-                    <div class="project-content">
-                        <p><strong>项目简介：</strong>参与大创/PRP研究项目，针对 EPC2366 等氮化镓（GaN）高频功率器件进行建模与分析。</p>
+                    <summary style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding-right: 20px;">
+                        <span>📁 宽禁带半导体 GaN 功率器件双脉冲测试研究</span>
+                        <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 120px; text-align: right; margin-left: auto;">2025.04 - 2025.06</span>
+                    </summary>
+                    <div class="project-content" style="padding-top: 15px;">
+                        <p style="margin-top: 0;"><strong>项目简介：</strong>针对第三代半导体氮化镓（GaN）FET 开展动态特性表征，搭建双脉冲测试（DPT）实验电路并进行精确仿真研究。</p>
                         <ul>
-                            <li>利用 LTspice 软件搭建双脉冲测试（Double Pulse Test）电路模型。</li>
-                            <li>分析开通/关断瞬态过程中的寄生参数对电压尖峰和开关损耗的影响。</li>
-                            <li>深入探究宽禁带器件在高速开关状态下的暂态稳定性。</li>
+                            <li>基于 LTspice 独立构建 EPC2366 GaN FET 的完整外围寄生参数电路模型，深入分析开通/关断过程中的电压尖峰与振荡。</li>
+                            <li>优化驱动电阻（R_g）配置与主回路直流母线电容布局，显著降低了回路寄生电感对高频开关特性的影响。</li>
                         </ul>
+                        
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 200px; height: 140px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                                <img src="photos/gan_dpt_1.jpg" alt="双脉冲测试原理图" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div style="flex: 1; min-width: 200px; height: 140px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                                <img src="photos/gan_dpt_2.jpg" alt="LTspice仿真波形" onerror="this.src='https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
                     </div>
                 </details>
 
                 <details class="project-details">
-                    <summary>📁 基于机器学习的河南某风电场功率预测系统</summary>
-                    <div class="project-content">
-                        <p><strong>项目简介：</strong>针对复杂气象条件下的风力发电输出功率进行建模预测，提高电网接纳新能源的能力。</p>
+                    <summary style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding-right: 20px;">
+                        <span>📁 基于机器学习的河南某风电场功率预测系统</span>
+                        <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 120px; text-align: right; margin-left: auto;">2025.06 - 至今</span>
+                    </summary>
+                    <div class="project-content" style="padding-top: 15px;">
+                        <p style="margin-top: 0;"><strong>项目简介：</strong>利用数据科学与机器学习算法对高维风机气象及历史功率数据进行建模，解决新能源出力的随机性与波动性难题。</p>
                         <ul>
-                            <li>使用 Python 对风场历史数据进行清洗，利用 K-means 进行异常数据聚类剔除。</li>
-                            <li>构建并训练 CNN-XGBoost 混合预测模型，实现短期与超短期风电功率预测。</li>
-                            <li>优化预测精度，为功率波动剧烈情况下的电网调度与暂态稳定分析提供数据支撑。</li>
+                            <li>使用 Python 深度清洗河南某风电场海量 SCADA 数据，通过 K-means 聚类有效识别并剔除风速-功率异常“弃风限电”数据点。</li>
+                            <li>利用主成分分析（PCA）降低气象特征维度，构建并训练 XGBoost 回归预测模型，显著提升了短期风电功率预测的精度与稳定性。</li>
                         </ul>
+                        
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 200px; height: 140px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                                <img src="photos/wind_prediction_1.jpg" alt="风电场全景" onerror="this.src='https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div style="flex: 1; min-width: 200px; height: 140px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                                <img src="photos/wind_prediction_2.jpg" alt="XGBoost预测曲线" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
                     </div>
                 </details>
 
                 <details class="project-details">
-                    <summary>📁 电力系统暂态分析与故障数值模拟</summary>
-                    <div class="project-content">
-                        <p><strong>项目简介：</strong>基于理论课程与实验扩展，对同步发电机突发短路及系统暂态稳定进行仿真验证。</p>
+                    <summary style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding-right: 20px;">
+                        <span>📁 电力系统暂态分析与故障数值模拟</span>
+                        <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 120px; text-align: right; margin-left: auto;">2026.03 - 2026.05</span>
+                    </summary>
+                    <div class="project-content" style="padding-top: 15px;">
+                        <p style="margin-top: 0;"><strong>项目简介：</strong>对多机电力网络进行对称与不对称短路故障解算，分析发电机转子角稳定度及网络暂态稳定性。</p>
                         <ul>
-                            <li>使用 PLECS/LTspice 建立同步机及多机系统的数学与拓扑模型。</li>
-                            <li>模拟对称与不对称短路故障，应用对称分量法解算各相暂态电流。</li>
-                            <li>运用 Excel/Origin 提取仿真曲线数据，计算关键暂态参数与标准差，撰写完整学术报告。</li>
+                            <li>基于派克变换（Park Transform）建立同步发电机暂态数学模型，计算并绘制单相接地、两相短路等情况下的正序/负序/零序复合序网图。</li>
+                            <li>利用数值方法求解发电机转子运动功角方程（Swing Equation），仿真模拟断路器切除故障前后电磁功率的变化曲线，评估功角稳定性。</li>
                         </ul>
+                        
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 200px; height: 140px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                                <img src="photos/power_transient_1.jpg" alt="复合序网图计算" onerror="this.src='https://images.unsplash.com/photo-1601556129469-543a9ff36c0a?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div style="flex: 1; min-width: 200px; height: 140px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                                <img src="photos/power_transient_2.jpg" alt="转子功角 swing 曲线" onerror="this.src='https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
                     </div>
                 </details>
             </section>
 
-            <section style="margin-bottom: 35px;">
+            <section id="competitions" style="margin-bottom: 35px;">
                 <h2 class="section-title">🏆 竞赛经历</h2>
                 <div style="background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
                         
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #f0f2f5;">
-                            <div style="font-weight: 600; color: #2c3e50;">全国大学生物理实验竞赛</div>
-                            <div style="display: flex; gap: 20px; align-items: center;">
-                                <span style="background-color: #fff7e6; color: #d46b08; border: 1px solid #ffd591; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">国家一等奖</span>
-                                <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 65px; text-align: right;">2023.12</span>
+                        <div style="border-bottom: 1px dashed #f0f2f5; padding-bottom: 16px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+                            <div style="flex: 1; min-width: 260px;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px;">
+                                    <h4 style="font-size: 1rem; color: #333; margin: 0;">🥇 全国大学生物理实验竞赛（教学赛）</h4>
+                                    <span style="color: #7f8c8d; font-size: 0.9rem; font-weight: 500;">2023.12</span>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <span style="background-color: #fff7e6; color: #d46b08; border: 1px solid #ffd591; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">国家一等奖</span>
+                                </div>
+                                <p style="font-size: 0.9rem; color: #666; line-height: 1.6; margin: 0;">
+                                    <strong>项目：液氮比汽化热测量装置的创新设计与智能化改进</strong><br>
+                                    针对传统热学实验误差大、手动记录困难的问题，引入“动态称量法”并结合电热学原理进行系统级重构。利用 <strong>LabVIEW</strong> 搭建数字化监测系统，实现液氮质量随时间变化的连续全自动采集；使用 <strong>Origin Pro</strong> 对蒸发曲线进行非线性高级数学拟合，精准扣除环境漏热带来的系统误差，显著提升了实验建模的物理严谨性与测量精度。
+                                </p>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; flex-shrink: 0;">
+                                <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+                                    <a href="物实竞赛_1.png" data-fancybox="competitions" data-caption="物理实验竞赛：LabVIEW 数字化监测系统">
+                                        <img src="物实竞赛_1.png" alt="LabVIEW系统" onerror="this.src='https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    </a>
+                                </div>
+                                <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+                                    <a href="物实竞赛_2.png" data-fancybox="competitions" data-caption="物理实验竞赛：Origin 数据拟合与漏热分析">
+                                        <img src="物实竞赛_2.png" alt="Origin数据处理" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #f0f2f5;">
-                            <div style="font-weight: 600; color: #2c3e50;">全国大学生数学竞赛</div>
-                            <div style="display: flex; gap: 20px; align-items: center;">
-                                <span style="background-color: #e6f7ff; color: #0050b3; border: 1px solid #91d5ff; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">上海市三等奖</span>
-                                <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 65px; text-align: right;">2023.12</span>
+                        <div style="border-bottom: 1px dashed #f0f2f5; padding-bottom: 16px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+                            <div style="flex: 1; min-width: 260px;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px;">
+                                    <h4 style="font-size: 1rem; color: #333; margin: 0;">🥈 全国大学生数学竞赛</h4>
+                                    <span style="color: #7f8c8d; font-size: 0.9rem; font-weight: 500;">2023.12</span>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <span style="background-color: #e6f7ff; color: #0050b3; border: 1px solid #91d5ff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">上海市三等奖</span>
+                                </div>
+                                <p style="font-size: 0.9rem; color: #666; line-height: 1.6; margin: 0;">扎实的高等数学与微积分理论功底，具备优秀的高维矩阵解算与复杂代数方程推导能力。</p>
                             </div>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #f0f2f5;">
-                            <div style="font-weight: 600; color: #2c3e50;">高校电气电子工程创新大赛</div>
-                            <div style="display: flex; gap: 20px; align-items: center;">
-                                <span style="background-color: #e6f7ff; color: #0050b3; border: 1px solid #91d5ff; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">上海市三等奖</span>
-                                <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 65px; text-align: right;">2024.07</span>
+                        <div style="border-bottom: 1px dashed #f0f2f5; padding-bottom: 16px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+                            <div style="flex: 1; min-width: 260px;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px;">
+                                    <h4 style="font-size: 1rem; color: #333; margin: 0;">🥉 高校电气电子工程创新大赛</h4>
+                                    <span style="color: #7f8c8d; font-size: 0.9rem; font-weight: 500;">2024.07</span>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <span style="background-color: #e6f7ff; color: #0050b3; border: 1px solid #91d5ff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">上海市三等奖</span>
+                                </div>
+                                <p style="font-size: 0.9rem; color: #666; line-height: 1.6; margin: 0;">
+                                    <strong>作品：多源微小环境能量收集装置的研制与硬件调试</strong><br>
+                                    针对微机电系统长期可靠供电需求，研制了一款适配太阳能、热能等多源微小能量的自主收集与管理装置。采用 <strong>LTC3108 实现了极低毫伏级（20mV）自谐振升压启动</strong>，并引入集成 <strong>MPPT（最大功率点追踪）</strong>功能的 <strong>ADP5091</strong> 动态优化光电利用效率；利用 <strong>LTSpice</strong> 搭建仿真模型进行全系统拓扑验证，完成了可扩展矩阵式结构的 <strong>PCB 原理图绘制、硬件焊接与单板逐级联调</strong>，成功将微小环境能量稳定升压至 3.3V/5V 标准伏级输出。
+                                </p>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; flex-shrink: 0;">
+                                <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+                                    <a href="电气创新赛_实物.png" data-fancybox="competitions" data-caption="电气电子创新大赛：矩阵式结构硬件实物与测试平台">
+                                        <img src="电气创新赛_实物.png" alt="硬件实物" onerror="this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    </a>
+                                </div>
+                                <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+                                    <a href="电气创新赛_仿真.png" data-fancybox="competitions" data-caption="电气电子创新大赛：LTSpice 升压稳态仿真波形">
+                                        <img src="电气创新赛_仿真.png" alt="LTSpice仿真" onerror="this.src='https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0;">
-                            <div style="font-weight: 600; color: #2c3e50;">全国大学生数学建模竞赛</div>
-                            <div style="display: flex; gap: 20px; align-items: center;">
-                                <span style="background-color: #e6f7ff; color: #0050b3; border: 1px solid #91d5ff; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">上海市三等奖</span>
-                                <span style="color: #7f8c8d; font-size: 0.9rem; min-width: 65px; text-align: right;">2024.09</span>
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+                            <div style="flex: 1; min-width: 260px;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px;">
+                                    <h4 style="font-size: 1rem; color: #333; margin: 0;">🥉 全国大学生数学建模竞赛</h4>
+                                    <span style="color: #7f8c8d; font-size: 0.9rem; font-weight: 500;">2024.09</span>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <span style="background-color: #e6f7ff; color: #0050b3; border: 1px solid #91d5ff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">上海市三等奖</span>
+                                </div>
+                                <p style="font-size: 0.9rem; color: #666; line-height: 1.6; margin: 0;">负责算法建模与核心代码编写，熟练运用多元回归、优化算法对高维数据集进行量化求解与鲁棒性验证。</p>
                             </div>
                         </div>
 
@@ -593,25 +678,72 @@
                 <h2 class="section-title">🎖️ 荣誉奖项</h2>
                 <div class="honor-card">
                     <ul class="honor-list">
-                        <li class="honor-item">
-                            <div class="honor-icon">⚡</div>
-                            <div class="honor-info">
-                                <h4>特高压电网奖学金</h4>
-                                <p>针对电气行业高素质骨干人才设立的专项奖学金</p>
+                        
+                        <li class="honor-item" style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%;">
+                            <div style="display: flex; gap: 15px; align-items: flex-start; flex: 1; min-width: 260px;">
+                                <div class="honor-icon">⚡</div>
+                                <div class="honor-info">
+                                    <h4>特高压电网奖学金</h4>
+                                    <p>针对电气行业高素质骨干人才设立的专项奖学金 · 充分彰显专业认可度</p>
+                                </div>
+                            </div>
+                            <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); flex-shrink: 0;">
+                                <a href="特高压.png" data-fancybox="honors" data-caption="特高压电网奖学金 证书详情">
+                                    <img src="特高压.png" alt="特高压电网奖学金" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                </a>
                             </div>
                         </li>
-                        <li class="honor-item">
-                            <div class="honor-icon">📜</div>
-                            <div class="honor-info">
-                                <h4>校级 B 等奖学金</h4>
-                                <p>学业与综合表现优秀 颁发单位：上海交通大学 </p>
+
+                        <!-- <li class="honor-item" style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%;">
+                            <div style="display: flex; gap: 15px; align-items: flex-start; flex: 1; min-width: 260px;">
+                                <div class="honor-icon">🏅</div>
+                                <div class="honor-info">
+                                    <h4>国家励志奖学金</h4>
+                                    <p>学业及综合表现突出优秀学子荣誉 · 教育部/交大严格评审颁发</p>
+                                </div>
+                            </div>
+                            <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); flex-shrink: 0;">
+                                <a href="photos/honor_national.jpg" data-fancybox="honors" data-caption="国家励志奖学金 证书详情">
+                                    <img src="photos/honor_national.jpg" alt="国家励志奖学金" onerror="this.src='https://images.unsplash.com/photo-1567057419565-4349c49d8a04?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                </a>
+                            </div>
+                        </li> -->
+
+                        <li class="honor-item" style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%;">
+                            <div style="display: flex; gap: 15px; align-items: flex-start; flex: 1; min-width: 260px;">
+                                <div class="honor-icon">📜</div>
+                                <div class="honor-info">
+                                    <h4>校级 B 等奖学金</h4>
+                                    <p>学业与综合表现优秀 · 颁发单位：上海交通大学</p>
+                                </div>
+                            </div>
+                            <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); flex-shrink: 0;">
+                                <a href="2023-2024校B.jpg" data-fancybox="honors" data-caption="校级 B 等奖学金 证书详情">
+                                    <img src="2023-2024校B.jpg" alt="校级B等奖学金" onerror="this.src='https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                </a>
                             </div>
                         </li>
-                        <li class="honor-item">
-                            <div class="honor-icon">🏛️</div>
-                            <div class="honor-info">
-                                <h4>校级三好学生 / 校级优秀团员</h4>
-                                <p>交大优秀个人荣誉，政治面貌与群众基础极佳</p>
+
+                        <li class="honor-item" style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%; padding: 12px 0;">
+                            <div style="display: flex; gap: 15px; align-items: flex-start; flex: 1; min-width: 260px;">
+                                <div class="honor-icon">🏛️</div>
+                                <div class="honor-info">
+                                    <h4>校级三好学生 / 校级优秀团员</h4>
+                                    <p>交大优秀个人荣誉 · 政治面貌与群众基础极佳</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; flex-shrink: 0;">
+                                <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+                                    <a href="2023-2024三好学生.jpg" data-fancybox="honors" data-caption="校级三好学生 证书详情">
+                                        <img src="2023-2024三好学生.jpg" alt="校级优秀称号证书" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    </a>
+                                </div>
+                                <div style="width: 120px; height: 75px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+                                    <a href="2024-2025优秀团员.jpg" data-fancybox="honors" data-caption="校级优秀团员 证书详情">
+                                        <img src="2024-2025优秀团员.jpg" alt="校级优秀团员证书" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    </a>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -690,7 +822,7 @@
                 </details>
             </section>
             
-            <section style="margin-bottom: 35px;">
+            <section id="practice" style="margin-bottom: 35px;">
                 <h2 class="section-title">🤝 社会实践与志愿服务</h2>
                 <div style="background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
                     <div style="display: flex; flex-direction: column; gap: 20px;">
@@ -701,17 +833,33 @@
                                 <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">连续两年代表学校返回家乡高中开展宣讲，负责宣讲策划、宣讲材料编排及现场互动，均获评校级“优秀实践团”。</p>
                             </div>
                             <div style="width: 180px; height: 110px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06); flex-shrink: 0;">
-                                <img src="photos/practice_shanghai.jpg" alt="返校宣讲" onerror="this.src='https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                                <a href="photos/practice_shanghai.jpg" data-fancybox="practice" data-caption="寒假返校宣讲项目团队照片">
+                                    <img src="photos/practice_shanghai.jpg" alt="返校宣讲" onerror="this.src='https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                </a>
                             </div>
                         </div>
 
                         <div style="border-bottom: 1px dashed #f0f2f5; padding-bottom: 16px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
                             <div style="flex: 1; min-width: 260px;">
-                                <h4 style="font-size: 1rem; color: #333; margin-bottom: 8px;">🚢 舟山摘箬山岛科技实践 & 雪龙号参观</h4>
-                                <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">参与为期 5 天的舟山摘箬山岛海洋科技实践教育活动；深入“雪龙号/雪龙二号”极地考察船进行参观实践，体悟国之重器与大科学工程。</p>
+                                <h4 style="font-size: 1rem; color: #333; margin-bottom: 8px;">🏝️ 舟山摘箬山岛海洋科技实践</h4>
+                                <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">参与为期 5 天的海洋科技实践教育活动，深入实地调研海岛新能源分布式发电系统及海洋示范工程，强化跨学科工程实践素养。</p>
                             </div>
                             <div style="width: 180px; height: 110px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06); flex-shrink: 0;">
-                                <img src="photos/xuelong.jpg" alt="雪龙号参观" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                                <a href="舟山实践.png" data-fancybox="practice" data-caption="舟山摘箬山岛海洋科技实践留影">
+                                    <img src="舟山实践.png" alt="舟山科技实践" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div style="border-bottom: 1px dashed #f0f2f5; padding-bottom: 16px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+                            <div style="flex: 1; min-width: 260px;">
+                                <h4 style="font-size: 1rem; color: #333; margin-bottom: 8px;">🚢 “雪龙号/雪龙二号”极地考察船参观实践</h4>
+                                <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">登船深入参观国家级极地科学考察重大装备，学习大科学工程的系统集成与极端环境下的电力保障技术，体悟大国重器精神。</p>
+                            </div>
+                            <div style="width: 180px; height: 110px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06); flex-shrink: 0;">
+                                <a href="雪龙号.png" data-fancybox="practice" data-caption="雪龙号极地考察船参观实践">
+                                    <img src="雪龙号.png" alt="雪龙号参观" onerror="this.src='https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                </a>
                             </div>
                         </div>
 
@@ -721,7 +869,9 @@
                                 <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">作为核心志愿者投身上海半程马拉松、上海电影博物馆等重大赛事与展馆的日常服务保障工作，累计志愿服务时长达 <strong>75 小时</strong>。</p>
                             </div>
                             <div style="width: 180px; height: 110px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06); flex-shrink: 0;">
-                                <img src="photos/volunteer.jpg" alt="志愿服务" onerror="this.src='https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover;">
+                                <a href="volunteer.jpg" data-fancybox="practice" data-caption="上海半程马拉松志愿服务荣誉证书详情">
+                                    <img src="volunteer.jpg" alt="志愿服务" onerror="this.src='https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&auto=format&fit=crop&q=60'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; cursor: zoom-in;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                </a>
                             </div>
                         </div>
 
